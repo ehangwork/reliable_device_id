@@ -6,7 +6,7 @@
 // For more about Flutter integration tests, see
 // https://flutter.dev/to/integration-testing
 
-import 'package:device_unique_id/device_unique_id.dart';
+import 'package:reliable_device_id/reliable_device_id.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
@@ -16,7 +16,7 @@ void main() {
   testWidgets('getDeviceId returns a stable persisted UUID', (
     WidgetTester tester,
   ) async {
-    final plugin = DeviceUniqueId();
+    final plugin = ReliableDeviceId();
 
     final first = await plugin.get();
     final second = await plugin.get();
@@ -36,8 +36,8 @@ void main() {
   testWidgets('a new facade instance reads the same persisted ID', (
     WidgetTester tester,
   ) async {
-    final first = await DeviceUniqueId().get();
-    final second = await DeviceUniqueId().get();
+    final first = await ReliableDeviceId().get();
+    final second = await ReliableDeviceId().get();
 
     expect(second.deviceId, first.deviceId);
     expect(second.firstSeenAt, first.firstSeenAt,
@@ -45,13 +45,13 @@ void main() {
   });
 
   testWidgets('getAndroidId returns the raw SSAID', (WidgetTester tester) async {
-    final androidId = await DeviceUniqueId().getAndroidId();
+    final androidId = await ReliableDeviceId().getAndroidId();
 
     // Runs on an Android emulator: SSAID must be readable and non-empty,
     // and consistent with the signal reported alongside the primary ID.
     expect(androidId, isNotNull);
     expect(androidId, isNotEmpty);
-    final result = await DeviceUniqueId().get();
+    final result = await ReliableDeviceId().get();
     expect(result.signals.androidId, androidId);
   });
 }

@@ -1,18 +1,18 @@
-import 'package:device_unique_id/device_unique_id.dart';
+import 'package:reliable_device_id/reliable_device_id.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() {
-  runApp(const DeviceUniqueIdExampleApp());
+  runApp(const ReliableDeviceIdExampleApp());
 }
 
-class DeviceUniqueIdExampleApp extends StatelessWidget {
-  const DeviceUniqueIdExampleApp({super.key});
+class ReliableDeviceIdExampleApp extends StatelessWidget {
+  const ReliableDeviceIdExampleApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'device_unique_id example',
+      title: 'reliable_device_id example',
       theme: ThemeData(colorSchemeSeed: const Color(0xFF2F6FED)),
       home: const DeviceIdPage(),
     );
@@ -22,7 +22,7 @@ class DeviceUniqueIdExampleApp extends StatelessWidget {
 /// Demonstrates the plugin's single-method API.
 ///
 /// Note the explicit user action before the first read: in a real app the
-/// first [DeviceUniqueId.get] must happen only after privacy-policy consent.
+/// first [ReliableDeviceId.get] must happen only after privacy-policy consent.
 class DeviceIdPage extends StatefulWidget {
   const DeviceIdPage({super.key});
 
@@ -36,7 +36,7 @@ class _DeviceIdPageState extends State<DeviceIdPage> {
   @override
   void initState() {
     super.initState();
-    _future = DeviceUniqueId.instance.get();
+    _future = ReliableDeviceId.instance.get();
   }
 
   Future<void> _copy(String value) async {
@@ -47,7 +47,7 @@ class _DeviceIdPageState extends State<DeviceIdPage> {
   }
 
   Future<void> _showAndroidId() async {
-    final androidId = await DeviceUniqueId.instance.getAndroidId();
+    final androidId = await ReliableDeviceId.instance.getAndroidId();
     if (!mounted) return;
     showDialog<void>(
       context: context,

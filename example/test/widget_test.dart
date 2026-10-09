@@ -1,4 +1,4 @@
-import 'package:device_unique_id_example/main.dart';
+import 'package:reliable_device_id_example/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,7 +23,7 @@ Map<String, Object?> payload(String deviceId) => <String, Object?>{
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  const channel = MethodChannel('device_unique_id');
+  const channel = MethodChannel('reliable_device_id');
 
   setUp(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
@@ -44,7 +44,7 @@ void main() {
   });
 
   testWidgets('renders deviceId and signal rows', (WidgetTester tester) async {
-    await tester.pumpWidget(const DeviceUniqueIdExampleApp());
+    await tester.pumpWidget(const ReliableDeviceIdExampleApp());
     await tester.pumpAndSettle();
 
     expect(find.text('deviceId'), findsOneWidget);
@@ -62,7 +62,7 @@ void main() {
 
   testWidgets('android id button fetches via getAndroidId',
       (WidgetTester tester) async {
-    await tester.pumpWidget(const DeviceUniqueIdExampleApp());
+    await tester.pumpWidget(const ReliableDeviceIdExampleApp());
     await tester.pumpAndSettle();
 
     final button = find.text('直接读取 Android ID');

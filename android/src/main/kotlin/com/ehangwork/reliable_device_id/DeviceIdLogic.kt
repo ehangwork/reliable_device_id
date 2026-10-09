@@ -1,11 +1,11 @@
-package com.ehangwork.device_unique_id
+package com.ehangwork.reliable_device_id
 
 import android.os.Build
 import java.security.MessageDigest
 import java.util.UUID
 
 /** Namespaces the derivation so IDs never collide with other hash uses. */
-internal const val DERIVATION_NAMESPACE = "device_unique_id/v1"
+internal const val DERIVATION_NAMESPACE = "reliable_device_id/v1"
 
 /** Persisted primary-ID record kept in SharedPreferences. */
 internal data class StoredId(

@@ -1,9 +1,9 @@
-name: device_unique_id
+name: reliable_device_id
 description: "Device unique ID plugin for Android & iOS (mainland-China friendly): persisted UUID (iOS Keychain ThisDeviceOnly / Android SharedPreferences with ANDROID_ID witness migration detection) plus raw device signals. No permissions, no GMS dependency, explicit-call-only collection for privacy-consent gating."
 version: 0.4.0
-homepage: https://github.com/ehangwork/device_unique_id
-repository: https://github.com/ehangwork/device_unique_id
-issue_tracker: https://github.com/ehangwork/device_unique_id/issues
+homepage: https://github.com/ehangwork/reliable_device_id
+repository: https://github.com/ehangwork/reliable_device_id
+issue_tracker: https://github.com/ehangwork/reliable_device_id/issues
 
 environment:
   sdk: ^3.12.2
@@ -37,10 +37,10 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.ehangwork.device_unique_id
-        pluginClass: DeviceUniqueIdPlugin
+        package: com.ehangwork.reliable_device_id
+        pluginClass: ReliableDeviceIdPlugin
       ios:
-        pluginClass: DeviceUniqueIdPlugin
+        pluginClass: ReliableDeviceIdPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

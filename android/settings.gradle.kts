@@ -1,1 +1,1 @@
-rootProject.name = "device_unique_id"
+rootProject.name = "reliable_device_id"

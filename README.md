@@ -1,6 +1,6 @@
-# device_unique_id
+# reliable_device_id
 
-[![pub package](https://img.shields.io/badge/pub-0.4.0-blue.svg)](https://pub.dev/packages/device_unique_id)
+[![pub package](https://img.shields.io/badge/pub-0.4.0-blue.svg)](https://pub.dev/packages/reliable_device_id)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-green.svg)
 
@@ -27,16 +27,16 @@ Modern mobile platforms no longer expose a reliable hardware identifier (IMEI is
 
 ```yaml
 dependencies:
-  device_unique_id: ^0.4.0
+  reliable_device_id: ^0.4.0
 ```
 
 ## Usage
 
 ```dart
-import 'package:device_unique_id/device_unique_id.dart';
+import 'package:reliable_device_id/reliable_device_id.dart';
 
 // Call only after the user has consented to your privacy policy.
-final result = await DeviceUniqueId.instance.get();
+final result = await ReliableDeviceId.instance.get();
 
 result.deviceId;                  // the stable device ID (UUID-shaped)
 result.firstSeenAt;               // epoch ms when this ID was first derived
@@ -49,7 +49,7 @@ result.signals.isPhysicalDevice;  // emulator heuristic
 result.signals.toMap();           // flat map for your reporting pipeline
 
 // Direct raw ANDROID_ID accessor (Android only; null on iOS, never throws).
-final androidId = await DeviceUniqueId.instance.getAndroidId();
+final androidId = await ReliableDeviceId.instance.getAndroidId();
 ```
 
 ### ID stability semantics

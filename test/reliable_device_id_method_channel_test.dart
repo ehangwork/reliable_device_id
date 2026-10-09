@@ -1,5 +1,5 @@
-import 'package:device_unique_id/device_unique_id_method_channel.dart';
-import 'package:device_unique_id/device_unique_id_platform_interface.dart';
+import 'package:reliable_device_id/reliable_device_id_method_channel.dart';
+import 'package:reliable_device_id/reliable_device_id_platform_interface.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -28,7 +28,7 @@ Map<String, Object?> platformPayload({
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  const channel = MethodChannel('device_unique_id');
+  const channel = MethodChannel('reliable_device_id');
   late List<MethodCall> receivedCalls;
 
   setUp(() {
@@ -50,16 +50,16 @@ void main() {
   tearDown(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(channel, null);
-    DeviceUniqueIdPlatform.instance = MethodChannelDeviceUniqueId();
+    ReliableDeviceIdPlatform.instance = MethodChannelReliableDeviceId();
   });
 
-  test('$MethodChannelDeviceUniqueId is the default instance', () {
-    expect(DeviceUniqueIdPlatform.instance,
-        isA<MethodChannelDeviceUniqueId>());
+  test('$MethodChannelReliableDeviceId is the default instance', () {
+    expect(ReliableDeviceIdPlatform.instance,
+        isA<MethodChannelReliableDeviceId>());
   });
 
   test('getDeviceId parses the full payload', () async {
-    final result = await MethodChannelDeviceUniqueId().getDeviceId();
+    final result = await MethodChannelReliableDeviceId().getDeviceId();
 
     expect(result.deviceId, '11111111-2222-4333-8444-555555555555');
     expect(result.firstSeenAt, 1728450000000);
@@ -86,7 +86,7 @@ void main() {
       };
     });
 
-    final result = await MethodChannelDeviceUniqueId().getDeviceId();
+    final result = await MethodChannelReliableDeviceId().getDeviceId();
 
     expect(result.signals.androidId, isNull);
     expect(result.signals.isPhysicalDevice, isNull);
@@ -98,13 +98,13 @@ void main() {
         .setMockMethodCallHandler(channel, (call) async => null);
 
     await expectLater(
-      MethodChannelDeviceUniqueId().getDeviceId(),
+      MethodChannelReliableDeviceId().getDeviceId(),
       throwsA(isA<PlatformException>()),
     );
   });
 
   test('getAndroidId forwards to the channel', () async {
-    expect(await MethodChannelDeviceUniqueId().getAndroidId(), 'ssaid-channel');
+    expect(await MethodChannelReliableDeviceId().getAndroidId(), 'ssaid-channel');
     expect(receivedCalls.last.method, 'getAndroidId');
   });
 }

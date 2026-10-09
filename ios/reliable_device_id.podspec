@@ -1,9 +1,9 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint device_unique_id.podspec` to validate before publishing.
+# Run `pod lib lint reliable_device_id.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'device_unique_id'
+  s.name             = 'reliable_device_id'
   s.version          = '0.4.0'
   s.summary          = 'Stable per-device unique ID for Flutter apps (Android & iOS).'
   s.description      = <<-DESC
@@ -11,11 +11,11 @@ A Flutter plugin providing a stable per-device unique ID: deterministically
 derived on Android (ANDROID_ID / MediaDRM seed), Keychain-persisted on iOS,
 with risk-control signals and privacy-consent-friendly explicit collection.
                        DESC
-  s.homepage         = 'https://github.com/ehangwork/device_unique_id'
+  s.homepage         = 'https://github.com/ehangwork/reliable_device_id'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'ehangwork' => 'https://github.com/ehangwork' }
   s.source           = { :path => '.' }
-  s.source_files = 'device_unique_id/Sources/device_unique_id/**/*'
+  s.source_files = 'reliable_device_id/Sources/reliable_device_id/**/*'
   s.dependency 'Flutter'
   s.platform = :ios, '13.0'
 
@@ -27,5 +27,5 @@ with risk-control signals and privacy-consent-friendly explicit collection.
   # required reason APIs, update the PrivacyInfo.xcprivacy file to describe your
   # plugin's privacy impact, and then uncomment this line. For more information,
   # see https://developer.apple.com/documentation/bundleresources/privacy_manifest_files
-  # s.resource_bundles = {'device_unique_id_privacy' => ['device_unique_id/Sources/device_unique_id/PrivacyInfo.xcprivacy']}
+  # s.resource_bundles = {'reliable_device_id_privacy' => ['reliable_device_id/Sources/reliable_device_id/PrivacyInfo.xcprivacy']}
 end

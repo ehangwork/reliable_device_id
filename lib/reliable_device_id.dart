@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'device_unique_id_platform_interface.dart';
+import 'reliable_device_id_platform_interface.dart';
 import 'src/device_id_models.dart';
 
 export 'src/device_id_models.dart';
@@ -32,13 +32,13 @@ export 'src/device_id_models.dart';
 /// Privacy: no collection happens on construction or plugin registration.
 /// The first native read occurs only when [get] is invoked, so the host app
 /// can gate it behind privacy-policy consent.
-class DeviceUniqueId {
+class ReliableDeviceId {
   /// Creates an independent facade instance. Instances do not share caches;
   /// [instance] is provided as a convenient shared default.
-  DeviceUniqueId();
+  ReliableDeviceId();
 
   /// Shared default instance.
-  static final DeviceUniqueId instance = DeviceUniqueId();
+  static final ReliableDeviceId instance = ReliableDeviceId();
 
   DeviceIdResult? _cached;
 
@@ -72,7 +72,7 @@ class DeviceUniqueId {
   /// must only be called after privacy-policy consent.
   Future<String?> getAndroidId() async {
     try {
-      return await DeviceUniqueIdPlatform.instance.getAndroidId();
+      return await ReliableDeviceIdPlatform.instance.getAndroidId();
     } catch (_) {
       return null;
     }
@@ -81,7 +81,7 @@ class DeviceUniqueId {
   Future<DeviceIdResult> _fetch() async {
     DeviceIdResult result;
     try {
-      result = await DeviceUniqueIdPlatform.instance.getDeviceId();
+      result = await ReliableDeviceIdPlatform.instance.getDeviceId();
       if (result.deviceId.isEmpty) {
         throw const FormatException('empty deviceId from platform');
       }

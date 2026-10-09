@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'device_unique_id_platform_interface.dart';
+import 'reliable_device_id_platform_interface.dart';
 import 'src/device_id_models.dart';
 
-/// An implementation of [DeviceUniqueIdPlatform] that uses method channels.
-class MethodChannelDeviceUniqueId extends DeviceUniqueIdPlatform {
+/// An implementation of [ReliableDeviceIdPlatform] that uses method channels.
+class MethodChannelReliableDeviceId extends ReliableDeviceIdPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('device_unique_id');
+  final methodChannel = const MethodChannel('reliable_device_id');
 
   @override
   Future<DeviceIdResult> getDeviceId() async {

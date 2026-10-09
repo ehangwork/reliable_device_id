@@ -4,19 +4,19 @@
 import PackageDescription
 
 let package = Package(
-    name: "device_unique_id",
+    name: "reliable_device_id",
     platforms: [
         .iOS("13.0")
     ],
     products: [
-        .library(name: "device-unique-id", targets: ["device_unique_id"])
+        .library(name: "reliable-device-id", targets: ["reliable_device_id"])
     ],
     dependencies: [
         .package(name: "FlutterFramework", path: "../FlutterFramework")
     ],
     targets: [
         .target(
-            name: "device_unique_id",
+            name: "reliable_device_id",
             dependencies: [
                 .product(name: "FlutterFramework", package: "FlutterFramework")
             ],

@@ -1,6 +1,6 @@
-# device_unique_id_example
+# reliable_device_id_example
 
-Demonstrates how to use the device_unique_id plugin.
+Demonstrates how to use the reliable_device_id plugin.
 
 ## Getting Started
 

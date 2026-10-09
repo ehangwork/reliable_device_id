@@ -1,4 +1,4 @@
-package com.ehangwork.device_unique_id
+package com.ehangwork.reliable_device_id
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -11,7 +11,7 @@ import kotlin.test.assertTrue
  * Unit tests for the pure ID decision logic (see [decide]). Run with
  * `./gradlew testDebugUnitTest` in `example/android/`.
  */
-internal class DeviceUniqueIdPluginTest {
+internal class ReliableDeviceIdPluginTest {
     private val existing =
         StoredId(
             uuid = "11111111-2222-4333-8444-555555555555",

@@ -19,14 +19,14 @@ import UIKit
  * No collection happens at registration; work starts only when Flutter
  * invokes `getDeviceId`.
  */
-public class DeviceUniqueIdPlugin: NSObject, FlutterPlugin {
+public class ReliableDeviceIdPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "device_unique_id", binaryMessenger: registrar.messenger())
-    let instance = DeviceUniqueIdPlugin()
+    let channel = FlutterMethodChannel(name: "reliable_device_id", binaryMessenger: registrar.messenger())
+    let instance = ReliableDeviceIdPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
-  private let queue = DispatchQueue(label: "com.example.device_unique_id.io", qos: .userInitiated)
+  private let queue = DispatchQueue(label: "com.example.reliable_device_id.io", qos: .userInitiated)
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
@@ -57,7 +57,7 @@ public class DeviceUniqueIdPlugin: NSObject, FlutterPlugin {
   }
 
   private static let keychainService =
-    (Bundle.main.bundleIdentifier ?? "unknown.bundle") + ".device_unique_id"
+    (Bundle.main.bundleIdentifier ?? "unknown.bundle") + ".reliable_device_id"
   private static let keychainAccount = "device_uuid"
 
   private static func readDeviceId() -> [String: Any?] {

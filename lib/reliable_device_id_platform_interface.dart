@@ -1,25 +1,25 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'device_unique_id_method_channel.dart';
+import 'reliable_device_id_method_channel.dart';
 import 'src/device_id_models.dart';
 
-abstract class DeviceUniqueIdPlatform extends PlatformInterface {
-  /// Constructs a DeviceUniqueIdPlatform.
-  DeviceUniqueIdPlatform() : super(token: _token);
+abstract class ReliableDeviceIdPlatform extends PlatformInterface {
+  /// Constructs a ReliableDeviceIdPlatform.
+  ReliableDeviceIdPlatform() : super(token: _token);
 
   static final Object _token = Object();
 
-  static DeviceUniqueIdPlatform _instance = MethodChannelDeviceUniqueId();
+  static ReliableDeviceIdPlatform _instance = MethodChannelReliableDeviceId();
 
-  /// The default instance of [DeviceUniqueIdPlatform] to use.
+  /// The default instance of [ReliableDeviceIdPlatform] to use.
   ///
-  /// Defaults to [MethodChannelDeviceUniqueId].
-  static DeviceUniqueIdPlatform get instance => _instance;
+  /// Defaults to [MethodChannelReliableDeviceId].
+  static ReliableDeviceIdPlatform get instance => _instance;
 
   /// Platform-specific implementations should set this with their own
-  /// platform-specific class that extends [DeviceUniqueIdPlatform] when
+  /// platform-specific class that extends [ReliableDeviceIdPlatform] when
   /// they register themselves.
-  static set instance(DeviceUniqueIdPlatform instance) {
+  static set instance(ReliableDeviceIdPlatform instance) {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;
   }

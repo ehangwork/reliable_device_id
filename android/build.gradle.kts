@@ -1,4 +1,4 @@
-group = "com.ehangwork.device_unique_id"
+group = "com.ehangwork.reliable_device_id"
 version = "1.0-SNAPSHOT"
 
 buildscript {
@@ -26,7 +26,7 @@ plugins {
 }
 
 android {
-    namespace = "com.ehangwork.device_unique_id"
+    namespace = "com.ehangwork.reliable_device_id"
 
     compileSdk = 36
 

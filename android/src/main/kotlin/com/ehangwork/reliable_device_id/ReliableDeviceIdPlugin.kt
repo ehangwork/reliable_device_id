@@ -1,4 +1,4 @@
-package com.ehangwork.device_unique_id
+package com.ehangwork.reliable_device_id
 
 import android.content.Context
 import android.media.MediaDrm
@@ -31,7 +31,7 @@ import java.util.concurrent.RejectedExecutionException
  * No permissions are requested and no collection happens at registration;
  * work starts only when Flutter invokes `getDeviceId`.
  */
-class DeviceUniqueIdPlugin :
+class ReliableDeviceIdPlugin :
     FlutterPlugin,
     MethodCallHandler {
     private lateinit var channel: MethodChannel
@@ -46,7 +46,7 @@ class DeviceUniqueIdPlugin :
             // replace the executor shut down by a previous detach.
             executor = Executors.newSingleThreadExecutor()
         }
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "device_unique_id")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "reliable_device_id")
         channel.setMethodCallHandler(this)
     }
 
@@ -178,7 +178,7 @@ class DeviceUniqueIdPlugin :
     }
 
     private companion object {
-        const val PREFS_NAME = "device_unique_id"
+        const val PREFS_NAME = "reliable_device_id"
         const val KEY_UUID = "uuid"
         const val KEY_WITNESS = "witness"
         const val KEY_FIRST_SEEN = "first_seen"

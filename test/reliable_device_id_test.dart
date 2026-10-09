@@ -1,10 +1,10 @@
-import 'package:device_unique_id/device_unique_id.dart';
-import 'package:device_unique_id/device_unique_id_platform_interface.dart';
+import 'package:reliable_device_id/reliable_device_id.dart';
+import 'package:reliable_device_id/reliable_device_id_platform_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 class _FakePlatform extends MockPlatformInterfaceMixin
-    implements DeviceUniqueIdPlatform {
+    implements ReliableDeviceIdPlatform {
   _FakePlatform({this.delay = Duration.zero});
 
   final Duration delay;
@@ -51,9 +51,9 @@ void main() {
 
   test('get returns the platform result', () async {
     final platform = _FakePlatform();
-    final deviceUniqueId = DeviceUniqueId();
+    final deviceUniqueId = ReliableDeviceId();
 
-    DeviceUniqueIdPlatform.instance = platform;
+    ReliableDeviceIdPlatform.instance = platform;
 
     final result = await deviceUniqueId.get();
 
@@ -65,9 +65,9 @@ void main() {
 
   test('subsequent get calls are served from cache', () async {
     final platform = _FakePlatform();
-    final deviceUniqueId = DeviceUniqueId();
+    final deviceUniqueId = ReliableDeviceId();
 
-    DeviceUniqueIdPlatform.instance = platform;
+    ReliableDeviceIdPlatform.instance = platform;
 
     await deviceUniqueId.get();
     await deviceUniqueId.get();
@@ -79,9 +79,9 @@ void main() {
   test('concurrent get calls are deduplicated into one platform call',
       () async {
     final platform = _FakePlatform(delay: const Duration(milliseconds: 20));
-    final deviceUniqueId = DeviceUniqueId();
+    final deviceUniqueId = ReliableDeviceId();
 
-    DeviceUniqueIdPlatform.instance = platform;
+    ReliableDeviceIdPlatform.instance = platform;
 
     final results =
         await Future.wait(List.generate(5, (_) => deviceUniqueId.get()));
@@ -92,9 +92,9 @@ void main() {
 
   test('platform failure degrades to a session-only UUID v4', () async {
     final platform = _FakePlatform()..failure = 'boom';
-    final deviceUniqueId = DeviceUniqueId();
+    final deviceUniqueId = ReliableDeviceId();
 
-    DeviceUniqueIdPlatform.instance = platform;
+    ReliableDeviceIdPlatform.instance = platform;
 
     final result = await deviceUniqueId.get();
 
@@ -107,9 +107,9 @@ void main() {
   test('degraded result is retried instead of pinned for the session',
       () async {
     final platform = _FakePlatform()..failure = 'boom';
-    final deviceUniqueId = DeviceUniqueId();
+    final deviceUniqueId = ReliableDeviceId();
 
-    DeviceUniqueIdPlatform.instance = platform;
+    ReliableDeviceIdPlatform.instance = platform;
 
     final degraded = await deviceUniqueId.get();
     expect(degraded.degraded, isTrue);
@@ -127,9 +127,9 @@ void main() {
 
   test('persistent failure keeps one session-stable degraded value', () async {
     final platform = _FakePlatform()..failure = 'boom';
-    final deviceUniqueId = DeviceUniqueId();
+    final deviceUniqueId = ReliableDeviceId();
 
-    DeviceUniqueIdPlatform.instance = platform;
+    ReliableDeviceIdPlatform.instance = platform;
 
     final first = await deviceUniqueId.get();
     final second = await deviceUniqueId.get();
@@ -146,9 +146,9 @@ void main() {
   test('degraded retries are deduplicated while in flight', () async {
     final platform = _FakePlatform(delay: const Duration(milliseconds: 20))
       ..failure = 'boom';
-    final deviceUniqueId = DeviceUniqueId();
+    final deviceUniqueId = ReliableDeviceId();
 
-    DeviceUniqueIdPlatform.instance = platform;
+    ReliableDeviceIdPlatform.instance = platform;
 
     await deviceUniqueId.get();
     platform.failure = null;
@@ -163,18 +163,18 @@ void main() {
 
   test('getAndroidId returns the platform value', () async {
     final platform = _FakePlatform()..androidId = 'ssaid-direct';
-    final deviceUniqueId = DeviceUniqueId();
+    final deviceUniqueId = ReliableDeviceId();
 
-    DeviceUniqueIdPlatform.instance = platform;
+    ReliableDeviceIdPlatform.instance = platform;
 
     expect(await deviceUniqueId.getAndroidId(), 'ssaid-direct');
   });
 
   test('getAndroidId returns null instead of throwing on failure', () async {
     final platform = _FakePlatform()..failure = 'boom';
-    final deviceUniqueId = DeviceUniqueId();
+    final deviceUniqueId = ReliableDeviceId();
 
-    DeviceUniqueIdPlatform.instance = platform;
+    ReliableDeviceIdPlatform.instance = platform;
 
     expect(await deviceUniqueId.getAndroidId(), isNull);
   });
