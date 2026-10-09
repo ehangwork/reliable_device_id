@@ -26,7 +26,7 @@ public class ReliableDeviceIdPlugin: NSObject, FlutterPlugin {
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
-  private let queue = DispatchQueue(label: "com.example.reliable_device_id.io", qos: .userInitiated)
+  private let queue = DispatchQueue(label: "com.ehangwork.reliable_device_id.io", qos: .userInitiated)
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
